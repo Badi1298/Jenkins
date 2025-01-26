@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        BUILD_FILE_NAME = 'laptop.txt'
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -8,12 +12,12 @@ pipeline {
                 echo 'Building a new laptop..'
                 sh '''
                     mkdir -p build
-                    echo "Mainboard" >> build/computer.txt
-                    cat build/computer.txt
-                    echo "Display" >> build/computer.txt
-                    cat build/computer.txt
-                    echo "Keyboard" >> build/computer.txt
-                    cat build/computer.txt
+                    echo "Mainboard" >> build/$BUILD_FILE_NAME
+                    cat build/$BUILD_FILE_NAME
+                    echo "Display" >> build/$BUILD_FILE_NAME  
+                    cat build/$BUILD_FILE_NAME
+                    echo "Keyboard" >> build/$BUILD_FILE_NAME 
+                    cat build/$BUILD_FILE_NAME
                 '''
             }
         }
@@ -22,10 +26,10 @@ pipeline {
             steps {
                 echo 'Testing the laptop..'
                 sh '''
-                    test -f build/computer.txt
-                    grep -q Mainboard build/computer.txt
-                    grep -q Display build/computer.txt
-                    grep -q Keyboard build/computer.txt
+                    test -f build/$BUILD_FILE_NAME
+                    grep -q Mainboard build/$BUILD_FILE_NAME  
+                    grep -q Display build/$BUILD_FILE_NAME
+                    grep -q Keyboard build/$BUILD_FILE_NAME
                 '''
             }
         }
