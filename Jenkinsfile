@@ -18,6 +18,15 @@ pipeline {
                 '''
             }
         }
+
+        stage('Test') {
+            steps {
+                echo 'Testing the laptop..'
+                sh '''
+                    test -f build/computer.txt
+                '''
+            }
+        }
     }
 
     post {
