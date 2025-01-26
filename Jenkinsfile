@@ -8,7 +8,6 @@ pipeline {
                 echo 'Building a new laptop..'
                 sh '''
                     mkdir -p build
-                    touch build/computer.txt
                     echo "Mainboard" >> build/computer.txt
                     cat build/computer.txt
                     echo "Display" >> build/computer.txt
@@ -24,6 +23,9 @@ pipeline {
                 echo 'Testing the laptop..'
                 sh '''
                     test -f build/computer.txt
+                    grep -q Mainboard build/computer.txt
+                    grep -q Display build/computer.txt
+                    grep -q Keyboard build/computer.txt
                 '''
             }
         }
