@@ -6,14 +6,16 @@ pipeline {
             steps {
                 cleanWs()
                 echo 'Building a new laptop..'
-                sh 'mkdir -p build'
-                sh 'touch build/computer.txt'
-                sh 'echo "Mainboard" >> build/computer.txt'
-                sh 'cat build/computer.txt'
-                sh 'echo "Display" >> build/computer.txt'
-                sh 'cat build/computer.txt'
-                sh 'echo "Keyboard" >> build/computer.txt'
-                sh 'cat build/computer.txt'
+                sh '''
+                    mkdir -p build
+                    touch build/computer.txt
+                    echo "Mainboard" >> build/computer.txt
+                    cat build/computer.txt
+                    echo "Display" >> build/computer.txt
+                    cat build/computer.txt
+                    echo "Keyboard" >> build/computer.txt
+                    cat build/computer.txt
+                '''
             }
         }
     }
